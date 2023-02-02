@@ -74,16 +74,13 @@ const App = () => {
           isChecked={task.isChecked}
         />
         <Text
-          fontFamily="Sans-serif"
-          fontWeight="bold"
           position="relative"
           left="2rem"
           ml={5}
           gridArea="2/1/2/2"
           placeSelf="flex-start"
         >
-          {" "}
-          {task.text}{" "}
+          {task.text}
         </Text>
         <IconButton
           onClick={() => deleteTask(task.index)}
@@ -93,7 +90,7 @@ const App = () => {
           maxW="15px"
           gridArea="2/3/2/3"
           justifySelf="end"
-          alignSelf="self-start"
+          alignSelf="end"
           bg="red.600"
           icon={<DeleteIcon />}
         />
@@ -126,7 +123,7 @@ const App = () => {
           maxW="15px"
           gridArea="2/3/2/3"
           justifySelf="end"
-          alignSelf="self-start"
+          alignSelf="end"
           bg="red.600"
           icon={<DeleteIcon />}
         />
@@ -137,35 +134,59 @@ const App = () => {
   return (
     <>
       <Flex w="100%" h="100vh">
-        <Flex maxW="80%" w="80%" flexDir={"column"} ml="20%" mt="5%" mr="20%">
+        <Flex maxW="80%" w="80%" flexDir={"column"} ml="15%" mt="2%" mr="15%">
           <Button
             onClick={toggleColorMode}
-            w="fit-content"
+            w="100px"
+            minW="100px"
+            right={0}
             position="relative"
-            left="80%"
+            left="90%"
+            objectFit="scale-down"
           >
             Toggle {colorMode === "light" ? "Dark" : "Light"}
           </Button>
-          <Text fontWeight="700" fontSize="30" textDecoration="underline">
+          <Text
+            fontWeight="700"
+            fontSize="30"
+            mt="5%"
+            gap="20px"
+            textDecoration="underline"
+          >
             Tasks to do!
           </Text>
-          <form onSubmit={addTask} max-width={"80%"}>
+
+          <form
+            onSubmit={addTask}
+            margin-left="20%"
+            margin-right="10%"
+            margin-top="5%"
+            max-width="90%"
+            text-align="center"
+          >
             <Flex mr="2%" mt="3%">
               <Input
+                minW="200px"
                 value={newTask}
                 onChange={(e) => {
                   setNewTask(e.target.value);
                 }}
-                w="70%"
+                w="82%"
                 placeholder="Input a new task..."
               />
-              <Button onClick={addTask} w="15%" ml="2%">
+              <Button
+                onClick={addTask}
+                minW="18px"
+                w="100%"
+                maxW="100px"
+                ml="4%"
+              >
                 Add
               </Button>
             </Flex>
           </form>
-          <Tabs mt="3%" variant="line">
-            <TabList w="70%">
+          <Tabs mt="3%" variant="line" mr="20%">
+            <TabList w="100%">
               <Tab borderRadius="3px">Tasks</Tab>
               <Tab borderRadius="3px">Completed Tasks</Tab>
             </TabList>
@@ -175,7 +196,7 @@ const App = () => {
                   !task.isChecked ? (
                     <>
                       <TaskItem key={task.index} {...task}></TaskItem>{" "}
-                      <Divider padding="3" />
+                      <Divider padding="3" ml="0%" mt="2%" mr="15%" />
                     </>
                   ) : null
                 )}
@@ -185,7 +206,7 @@ const App = () => {
                   task.isChecked ? (
                     <>
                       <TaskItem key={task.index} {...task}></TaskItem>
-                      <Divider padding="3" />
+                      <Divider padding="3" ml="0%" mt="2%" mr="15%" />
                     </>
                   ) : null
                 )}
